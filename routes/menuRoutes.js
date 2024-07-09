@@ -1,10 +1,10 @@
 const express = require('express');
 
-const rout = express.Router();
+const router = express.Router();
 
 const menu = require('./../models/menu')
 
-rout.post("/menu", async (req,res)=>{
+router.post("/", async (req,res)=>{
     try{
         const data = req.body;
         const newMenu = new menu(data);
@@ -19,7 +19,7 @@ rout.post("/menu", async (req,res)=>{
     }
 });
 
-rout.get('/menu', async (req,res)=>{
+router.get('/', async (req,res)=>{
 
     try{
     const data = await menu.findOne();
@@ -32,7 +32,7 @@ rout.get('/menu', async (req,res)=>{
     }
 });
 
-rout.get('/menu/:tasteType', async (req,res)=>{
+router.get('/:tasteType', async (req,res)=>{
 
     try{
         const tasteType = req.params.tasteType;
@@ -48,7 +48,7 @@ rout.get('/menu/:tasteType', async (req,res)=>{
     }
 });
 
-rout.put('/:id',async (req, res)=>{
+router.put('/:id',async (req, res)=>{
     try{
     const menuId = req.params.id;
     const updatedMenu = req.body;
@@ -68,7 +68,7 @@ rout.put('/:id',async (req, res)=>{
 
 });
 
-rout.delete("/:id", async (req,res)=>{
+router.delete("/:id", async (req,res)=>{
     try{
         const menuId = req.params.id;
 
@@ -86,6 +86,6 @@ rout.delete("/:id", async (req,res)=>{
     }
 })
 
-module.exports = rout;
+module.exports = router;
 
 // hi i am vedant
